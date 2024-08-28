@@ -3,3 +3,4 @@ nextcord
 pytube
 yt_dlp
 ffmpeg
+PyNacl
