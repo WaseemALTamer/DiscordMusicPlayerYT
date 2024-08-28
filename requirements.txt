@@ -1,0 +1,5 @@
+discord.py
+nextcord
+pytube
+yt_dlp
+ffmpeg
