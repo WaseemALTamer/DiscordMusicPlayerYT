@@ -30,14 +30,12 @@ class YoutubeAPI():
     #this function is slow esspically if there is more than 50 videos in one play list check the pytube.Playlist to know why
     def PlaylistHerfsRequest(self, playlist_url: str) -> list:
         playlist = Playlist(playlist_url)
-        video_urls = [video.watch_url for video in playlist.videos]
-        Herfs = []
-        for Video in video_urls:
-            Herfs.append(self.extract_youtube_video_id(Video))
-        return Herfs
+        video_urls = [self.extract_youtube_video_id(video.watch_url) for video in playlist.videos]
+
+        return video_urls
     
+
     #private functions
-    #this function is writen twice in the BotServer and here we should fix that and reuse the function but keep the structure of the code maintainable 
     def extract_youtube_video_id(self, url: str) -> str:
         try:
             parsed_url = urlparse(url)
@@ -48,6 +46,7 @@ class YoutubeAPI():
         except Exception as e:
             print(f"An error occurred: {e}")
             return ''
+
 
 
 

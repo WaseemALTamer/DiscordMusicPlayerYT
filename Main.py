@@ -1,5 +1,7 @@
 from DiscordBot import DiscordPlayer
 
-Token = "" # add your bot token
+
+
+Token = ""
 x = DiscordPlayer(Token)
 x.Run()

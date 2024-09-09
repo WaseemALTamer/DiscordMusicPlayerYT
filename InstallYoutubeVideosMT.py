@@ -89,14 +89,13 @@ class YTVideosInstaller():
         stream.download(output_path)
         return filename
 
-    def download_video(self, url:str, output_path:str, HighRes=False, Record=True) -> str:
+    def download_video(self, url:str, output_path:str, HighRes=False) -> str:
         yt = YouTube(url)
         try:
             stream = yt.streams.filter(progressive=True, file_extension="mp4").first()
             filename = stream.default_filename
             stream.download(output_path)
-            if Record:
-                self.write_key_to_json("InstalledVideos.json", url, filename)
+            self.write_key_to_json("InstalledVideos.json", url, filename)
         except Exception as e:
             return e
         return filename
@@ -106,7 +105,7 @@ class YTVideosInstaller():
 
     #functions to be ran by a seperate threads 
     # Note! use the join method otherwise the theads will be only virtuallised and the installation process will be overall slower
-    def ThreadProccess(self, OutputFolder ,HighRes=False):
+    def ThreadProccess(self, HighRes=False):
 
         while True:
             if len(self.Queue) == 0:
@@ -117,7 +116,7 @@ class YTVideosInstaller():
 
             try:
                 self.Queue.pop(0)
-                File = self.download_video(temp, f"VideosOutputTest/{OutputFolder}", HighRes=HighRes, Record=False)            
+                File = self.download_video(f"https://www.youtube.com/{temp}", "VideosOutput", HighRes=HighRes)            
                 self.write_to_file(f"Download Complete : index --> {index} FileName --> {File} ","Logs/OutLog.txt")
             except Exception as e:
                 print("An error occurred:", str(e))
@@ -126,6 +125,3 @@ class YTVideosInstaller():
                 Errors += 1
             self.DownloadedVideos += 1
             print(f"Precentage Complete = {(int((self.DownloadedVideos/len(self.VideoURLs)) * 100))}%=============>{self.DownloadedVideos}/{len(self.VideoURLs)}")
-
-
-
