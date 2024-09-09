@@ -4,3 +4,4 @@ pytube
 yt_dlp
 ffmpeg
 PyNacl
+discord-ext-bot
