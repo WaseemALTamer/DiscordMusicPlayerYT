@@ -1,3 +1,6 @@
+This code is outdated use the "MusicPlayerOnVC" Repositry instead
+
+
 Install the requirements by going to cmd navigate to the files that you installed (\DiscordMusicPlayerYT)
 then run the command in the terminal:
                                     pip install -r requirements.txt
