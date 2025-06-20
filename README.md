@@ -1,4 +1,4 @@
-This code is outdated use the "MusicPlayerOnVC" Repositry instead
+This code is outdated use the "MusicPlayerOnVC" Repository instead
 
 
 Install the requirements by going to cmd navigate to the files that you installed (\DiscordMusicPlayerYT)
